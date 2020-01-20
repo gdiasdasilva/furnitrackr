@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'clearance'
+gem 'bulma-rails', '~> 0.8.0'
 
 group :development, :test do
   gem "awesome_print"

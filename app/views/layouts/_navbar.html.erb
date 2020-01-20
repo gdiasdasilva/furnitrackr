@@ -1,0 +1,35 @@
+<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <strong>PriceTracker</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+        <% if signed_in? %>
+          Signed in as: <%= current_user.email %>
+          <%= button_to 'Sign out', sign_out_path, method: :delete, class: 'button is-light' %>
+        <% else %>
+          <%= link_to 'Sign up', sign_up_path, class: 'button is-light' %>
+          <%= link_to 'Sign in', sign_in_path, class: 'button is-primary' %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
