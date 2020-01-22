@@ -22,7 +22,6 @@
       <div class="navbar-item">
         <div class="buttons">
         <% if signed_in? %>
-          Signed in as: <%= current_user.email %>
           <%= button_to 'Sign out', sign_out_path, method: :delete, class: 'button is-light' %>
         <% else %>
           <%= link_to 'Sign up', sign_up_path, class: 'button is-light' %>
