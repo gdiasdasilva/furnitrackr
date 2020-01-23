@@ -1,0 +1,15 @@
+// Place all the styles related to the Trackers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.table {
+  text-align: center;
+  tbody {
+    tr {
+      height: 50px;
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
