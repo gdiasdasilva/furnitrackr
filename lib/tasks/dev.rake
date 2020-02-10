@@ -15,6 +15,13 @@ if Rails.env.development? || Rails.env.test?
         threshold_price: 299.99,
         user: user
       )
+
+      Tracker.create!(
+        title: 'Another thing',
+        url: 'http://example2.com',
+        threshold_price: 100,
+        user: user
+      )
     end
   end
 end

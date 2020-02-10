@@ -1,23 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1 class="title is-1">
   <%= @tracker.title %>
-</p>
+  <% if @tracker.enabled %>
+    <span class="tag is-success">Enabled</span>
+  <% else %>
+    <span class="tag is-danger">Disabled</span>
+  <% end %>
+</h1>
 
-<p>
-  <strong>Url:</strong>
-  <%= @tracker.url %>
-</p>
+<h2 class="subtitle">Threshold price: <%= @tracker.threshold_price %> €</h2>
 
-<p>
-  <strong>Threshold price:</strong>
-  <%= @tracker.threshold_price %>
-</p>
+<hr>
+<p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>
+<hr>
 
-<p>
-  <strong>Enabled:</strong>
-  <%= @tracker.enabled %>
-</p>
+<h3 class="title is-3">Price history</h3>
 
-<%= link_to 'Back', trackers_path %>
+<p>Future data will be shown here.</p>
