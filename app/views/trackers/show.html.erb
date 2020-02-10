@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="title is-1">
   <%= @tracker.title %>
   <% if @tracker.enabled %>
@@ -9,7 +7,7 @@
   <% end %>
 </h1>
 
-<h2 class="subtitle">Threshold price: <%= @tracker.threshold_price %> €</h2>
+<h2 class="subtitle">Threshold price: <strong><%= @tracker.display_price_euros %>€</strong></h2>
 
 <hr>
 <p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>

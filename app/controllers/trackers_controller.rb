@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TrackersController < ApplicationController
+  before_action :require_login
   before_action :set_tracker, only: %i[show edit update destroy]
 
   # GET /trackers
@@ -22,6 +23,7 @@ class TrackersController < ApplicationController
   # POST /trackers.json
   def create
     @tracker = Tracker.new(tracker_params)
+    @tracker.user = current_user
 
     respond_to do |format|
       if @tracker.save

@@ -12,14 +12,14 @@ if Rails.env.development? || Rails.env.test?
       Tracker.create!(
         title: 'Incredible Sofa',
         url: 'http://example.com',
-        threshold_price: 299.99,
+        threshold_price: 29_999,
         user: user
       )
 
       Tracker.create!(
         title: 'Another thing',
         url: 'http://example2.com',
-        threshold_price: 100,
+        threshold_price: 10_000,
         user: user
       )
     end

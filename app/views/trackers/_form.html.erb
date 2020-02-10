@@ -1,37 +1,27 @@
 <%= form_with(model: tracker, local: true) do |form| %>
-  <% if tracker.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(tracker.errors.count, "error") %> prohibited this tracker from being saved:</h2>
-
-      <ul>
-        <% tracker.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <div class="field">
+    <%= form.label 'Tracker name', class: 'label' %>
+    <div class="control">
+      <%= form.text_field :title, class: 'input', placeholder: 'e.g. Incredible sofa bed', required: true %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :url %>
-    <%= form.text_field :url %>
+    <%= form.label 'Product URL', class: 'label' %>
+    <div class="control">
+      <%= form.text_field :url, class: 'input', placeholder: 'e.g. https://www.example.com', type: 'url', required: true %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :threshold_price %>
-    <%= form.text_field :threshold_price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :enabled %>
-    <%= form.check_box :enabled %>
+    <%= form.label 'Threshold price', class: 'label' %>
+    <div class="control">
+      <%= form.number_field :threshold_price, class: 'input', placeholder: 'e.g. 199.99', min: 0, step: 0.01, required: true %>
+    </div>
+    <p class="help">This value represents the threshold below which you'll be notified.</p>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Submit', class: 'button is-primary' %>
   </div>
 <% end %>

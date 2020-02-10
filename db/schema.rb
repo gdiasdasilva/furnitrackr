@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_224141) do
   create_table "trackers", force: :cascade do |t|
     t.string "title", null: false
     t.string "url", null: false
-    t.float "threshold_price", null: false
+    t.integer "threshold_price", null: false
     t.boolean "enabled", default: true
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

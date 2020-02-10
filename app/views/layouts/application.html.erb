@@ -7,14 +7,14 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" data-mutate-approach="sync"></script>
   </head>
 
   <body>
     <%= render "layouts/navbar" %>
     <div class="container is-fluid">
       <% if flash.present? %>
-        <div class="notification">
+        <div class="notification is-success">
           <button class="delete"></button>
           <% flash.each do |key, value| %>
             <p><%= value %></p>
