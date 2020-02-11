@@ -18,4 +18,25 @@
 
 .notification {
   margin-top: 20px;
+  margin-bottom: 20px;
+
+
+  &.success {
+    @extend .is-success;
+  }
+
+  &.alert {
+    @extend .is-warning;
+  }
+}
+
+.container {
+  margin-top: 40px;
+}
+
+section {
+  &.section {
+    margin-top: 20px;
+    padding: 0 10px;
+  }
 }

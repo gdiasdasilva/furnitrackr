@@ -7,7 +7,7 @@ class TrackersController < ApplicationController
   # GET /trackers
   # GET /trackers.json
   def index
-    @trackers = Tracker.all
+    @trackers = Tracker.where(user: current_user)
   end
 
   # GET /trackers/1
@@ -27,7 +27,10 @@ class TrackersController < ApplicationController
 
     respond_to do |format|
       if @tracker.save
-        format.html { redirect_to @tracker, notice: 'Tracker was successfully created.' }
+        format.html {
+          redirect_to @tracker,
+          flash: { success: 'Tracker was successfully created.' }
+        }
         format.json { render :show, status: :created, location: @tracker }
       else
         format.html { render :new }
