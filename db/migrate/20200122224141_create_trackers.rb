@@ -6,6 +6,7 @@ class CreateTrackers < ActiveRecord::Migration[6.0]
       t.integer :threshold_price, null: false
       t.boolean :enabled, default: true
       t.references :user, null: false
+      t.references :product, null: false
 
       t.timestamps
     end

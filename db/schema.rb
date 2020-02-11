@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_224141) do
+ActiveRecord::Schema.define(version: 2020_02_11_225831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
+    t.string "provider_identifier", null: false
+    t.string "provider", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "trackers", force: :cascade do |t|
     t.string "title", null: false
@@ -21,8 +28,10 @@ ActiveRecord::Schema.define(version: 2020_01_22_224141) do
     t.integer "threshold_price", null: false
     t.boolean "enabled", default: true
     t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_trackers_on_product_id"
     t.index ["user_id"], name: "index_trackers_on_user_id"
   end
 

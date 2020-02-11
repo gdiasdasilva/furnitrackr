@@ -25,6 +25,16 @@ class TrackersController < ApplicationController
     @tracker = Tracker.new(tracker_params)
     @tracker.user = current_user
 
+    product_identifier = set_product(tracker_params[:url])
+
+    if product_identifier.present?
+      product = Product.find_or_create_by!(
+        provider_identifier: product_identifier,
+        provider: Product::PROVIDERS.fetch(:ikea)
+      )
+      @tracker.product = product
+    end
+
     respond_to do |format|
       if @tracker.save
         format.html {
@@ -59,5 +69,10 @@ class TrackersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tracker_params
     params.require(:tracker).permit(:title, :url, :threshold_price, :enabled)
+  end
+
+  def set_product(url)
+    url_path = URI(url).path
+    url_path.split('/').last
   end
 end
