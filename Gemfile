@@ -20,11 +20,12 @@ group :development, :test do
   gem 'awesome_print'
   gem 'factory_bot'
   gem 'pry-byebug'
-  gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'web-console', '>= 3.3.0'
 end
