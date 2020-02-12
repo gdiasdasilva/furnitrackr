@@ -2,8 +2,11 @@
 
 class Product < ApplicationRecord
   PROVIDERS = {
-    ikea: 'ikea'
+    ikea: 'ikea',
   }.freeze
 
-  has_many :trackers
+  validates :provider_identifier, presence: true
+  validates :provider, presence: true
+
+  has_many :trackers, dependent: :restrict_with_exception
 end

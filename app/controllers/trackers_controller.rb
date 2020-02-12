@@ -17,7 +17,12 @@ class TrackersController < ApplicationController
   def create
     @tracker = Tracker.new(tracker_params)
     @tracker.user = current_user
-    @tracker.product = product_from_url(url)
+
+    product = ProductFromUrlService.new(url: tracker_params[:url]).call
+
+    if product.present?
+      @tracker.product = product
+    end
 
     if @tracker.save
       redirect_to @tracker, flash: { success: 'Tracker was successfully created.' }
@@ -43,9 +48,9 @@ class TrackersController < ApplicationController
 
   def product_from_url(url)
     url_path = URI(url).path
-    url_path.split('/').last
+    product_identifier = url_path.split('/').last
 
-    Product.find_or_create_by(
+    Product.find_or_create_by!(
       provider_identifier: product_identifier,
       provider: Product::PROVIDERS.fetch(:ikea),
     )
