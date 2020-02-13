@@ -9,4 +9,5 @@ class Product < ApplicationRecord
   validates :provider, presence: true
 
   has_many :trackers, dependent: :restrict_with_exception
+  has_many :prices, dependent: :restrict_with_exception
 end

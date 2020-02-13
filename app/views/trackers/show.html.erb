@@ -7,7 +7,7 @@
   <% end %>
 </h1>
 
-<h2 class="subtitle">Threshold price: <strong><%= @tracker.display_price_euros %>€</strong></h2>
+<h2 class="subtitle">Threshold price: <strong><%= @tracker.display_price_euros %></strong></h2>
 
 <hr>
 <p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>
@@ -15,4 +15,10 @@
 
 <h3 class="title is-3">Price history</h3>
 
-<p>Future data will be shown here.</p>
+<div class="content">
+<ul>
+<% @tracker.product.prices.each do |price| %>
+  <li><%= "#{Money.new(price.value)} € @ #{price.created_at.strftime("%B %-d, %Y")}" %></li>
+<% end %>
+</ul>
+</div>
