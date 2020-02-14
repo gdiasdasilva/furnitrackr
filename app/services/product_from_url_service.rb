@@ -7,12 +7,12 @@ class ProductFromUrlService
     url_path = URI(@url).path
     product_identifier = url_path.split('/').last
 
-    product = Product.find_or_create_by(
+    product = Product.find_or_initialize_by(
       provider_identifier: product_identifier,
       provider: Product::PROVIDERS.fetch(:ikea),
     )
 
-    return product if product.present?
+    return product if product.save
 
     nil
   end

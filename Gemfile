@@ -19,7 +19,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
 end
