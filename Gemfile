@@ -21,7 +21,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'factory_bot_rails'
   gem 'pry-byebug'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta4'
 end
 
 group :development do
@@ -33,6 +33,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'webdrivers'
