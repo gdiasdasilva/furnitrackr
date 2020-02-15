@@ -3,6 +3,6 @@ FactoryBot.define do
 
   factory :product do
     provider_identifier
-    provider { "ikea" }
+    provider { :ikea }
   end
 end

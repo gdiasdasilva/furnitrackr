@@ -45,14 +45,4 @@ class TrackersController < ApplicationController
   def tracker_params
     params.require(:tracker).permit(:title, :url, :threshold_price, :enabled)
   end
-
-  def product_from_url(url)
-    url_path = URI(url).path
-    product_identifier = url_path.split('/').last
-
-    Product.find_or_create_by!(
-      provider_identifier: product_identifier,
-      provider: Product::PROVIDERS.fetch(:ikea),
-    )
-  end
 end

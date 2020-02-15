@@ -9,7 +9,7 @@ class ProductFromUrlService
 
     product = Product.find_or_initialize_by(
       provider_identifier: product_identifier,
-      provider: Product::PROVIDERS.fetch(:ikea),
+      provider: :ikea,
     )
 
     return product if product.save
