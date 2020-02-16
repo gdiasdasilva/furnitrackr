@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to Price Tracker.
 
-Things you may want to cover:
+* Ruby version: 2.5.5
 
-* Ruby version
+## Database creation
 
-* System dependencies
+`rails db:create db:migrate db:seed`
 
-* Configuration
+## How to run the test suite
 
-* Database creation
+`rspec spec`
 
-* Database initialization
+## Services (job queues, cache servers, search engines, etc.)
 
-* How to run the test suite
+* Redis
 
-* Services (job queues, cache servers, search engines, etc.)
+## Deployment instructions
 
-* Deployment instructions
-
-* ...
+In the future deploy to heroku.
