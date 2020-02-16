@@ -43,6 +43,6 @@ class TrackersController < ApplicationController
   end
 
   def tracker_params
-    params.require(:tracker).permit(:title, :url, :threshold_price, :enabled)
+    params.require(:tracker).permit(:title, :url, :threshold_price)
   end
 end

@@ -38,6 +38,50 @@ RSpec.describe TrackersController do
     end
   end
 
+  describe "GET new" do
+    it "renders the new template" do
+      get :new
+      expect(response).to render_template("new")
+    end
+  end
+
+  describe "POST create" do
+    subject { post :create, params: { tracker: params } }
+    let(:params) do
+      {
+        title: 'my product',
+        url: 'http://example.com/aaa-bbb',
+        threshold_price: 59900,
+      }
+    end
+    let(:product) { create(:product) }
+
+    before do
+      allow(ProductFromUrlService).to receive_message_chain(:new, :call).and_return(product)
+    end
+
+    it "creates a new entry" do
+      expect { subject }.to change(Tracker, :count).by(1)
+      expect(Tracker.last).to have_attributes(
+        title: 'my product',
+        url: 'http://example.com/aaa-bbb',
+        threshold_price: 59900,
+        enabled: true,
+        user: user,
+        product: product,
+      )
+
+      expect(flash[:success]).to eq 'Tracker was successfully created.'
+    end
+
+    context 'when a valid product is not retrieved' do
+      it "does not create a new entry" do
+        allow(ProductFromUrlService).to receive_message_chain(:new, :call).and_return(nil)
+        expect { subject }.to_not(change(Tracker, :count))
+      end
+    end
+  end
+
   context 'when user is not authenticated' do
     it 'fails' do
 
