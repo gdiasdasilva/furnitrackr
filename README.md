@@ -1,5 +1,7 @@
 # README
 
+[![Codeship Status for gdiasdasilva/price-tracker](https://app.codeship.com/projects/4f9aa7c0-3326-0138-cd31-265415f14eb5/status?branch=master)](https://app.codeship.com/projects/385596)
+
 Welcome to Price Tracker.
 
 * Ruby version: 2.5.5
