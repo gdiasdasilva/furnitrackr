@@ -17,8 +17,12 @@
 
 <div class="content">
 <ul>
-<% @tracker.product.prices.each do |price| %>
+<% @tracker.product.prices.order(created_at: :desc).each do |price| %>
   <li><%= "#{Money.new(price.value)} € @ #{price.created_at.strftime("%B %-d, %Y")}" %></li>
 <% end %>
 </ul>
 </div>
+
+<%= form_with url: sync_tracker_path(@tracker), local: true do |form| %>
+  <% form.submit 'Sync', class: 'button is-danger' %>
+<% end %>

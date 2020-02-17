@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductFromUrlService
   def initialize(url:)
     @url = url

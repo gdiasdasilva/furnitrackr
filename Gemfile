@@ -8,6 +8,7 @@ ruby '2.5.5'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bulma-rails', '~> 0.8.0'
 gem 'clearance'
+gem 'faraday', '~> 1.0.0'
 gem 'jbuilder', '~> 2.7'
 gem 'money-rails'
 gem 'pg'
