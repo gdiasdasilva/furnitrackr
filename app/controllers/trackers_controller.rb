@@ -17,6 +17,7 @@ class TrackersController < ApplicationController
   def create
     @tracker = Tracker.new(tracker_params)
     @tracker.user = current_user
+    @tracker.threshold_price = tracker_params[:threshold_price].to_f * 100
 
     product = ProductFromUrlService.new(url: tracker_params[:url]).call
 

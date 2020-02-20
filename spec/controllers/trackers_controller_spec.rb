@@ -52,7 +52,7 @@ RSpec.describe TrackersController do
         {
           title: "my product",
           url: "http://example.com/aaa-bbb",
-          threshold_price: 59900,
+          threshold_price: 599.50,
         }
       end
       let(:product) { create(:product) }
@@ -66,7 +66,7 @@ RSpec.describe TrackersController do
         expect(Tracker.last).to have_attributes(
           title: "my product",
           url: "http://example.com/aaa-bbb",
-          threshold_price: 59900,
+          threshold_price: 59950,
           enabled: true,
           user: user,
           product: product,

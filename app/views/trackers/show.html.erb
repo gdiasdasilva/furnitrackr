@@ -14,18 +14,25 @@
 <hr>
 
 <%= form_with url: sync_tracker_path(@tracker), local: true do |form| %>
-  <% form.submit 'Sync', class: 'button is-danger' %>
+  <% form.submit 'Fetch price', class: 'button is-danger' %>
 <% end %>
 <br>
 
 <h3 class="title is-3">Price history</h3>
 
-<div class="content">
-  <ul>
-  <% @tracker.prices.order(created_at: :desc).each do |price| %>
-    <li><%= "#{Money.new(price.value)} € @ #{price.created_at.strftime("%B %-d, %Y")}" %></li>
-  <% end %>
-  </ul>
-</div>
+<table class="table is-striped is-hoverable is-bordered">
+  <thead>
+    <th>Date</th>
+    <th>Price</th>
+  </thead>
+  <tbody>
+    <% @tracker.prices.order(created_at: :desc).each do |price| %>
+      <tr>
+        <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
+        <td><%= Money.new(price.value) %> €</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= line_chart @tracker.prices.group_by_day %>
+<%#= line_chart @tracker.prices.group_by_day %>
