@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.image.homepage-chart {
-  padding: 20px;
+.container {
+  .box {
+    padding: 3em;
+
+    .columns.steps {
+      margin-top: 50px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    margin-bottom: -80px;
+  }
 }

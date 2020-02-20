@@ -1,31 +1,33 @@
-<nav class="navbar is-link" role="navigation" aria-label="main navigation">
+<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <strong>PriceTracker</strong>
+      <strong>Furnitracker.io</strong>
     </a>
-
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <%= link_to 'Home', root_path, class: 'navbar-item'%>
-      <%= link_to 'Trackers', trackers_path, class: 'navbar-item'%>
-      <%= link_to 'New Tracker', new_tracker_path, class: 'navbar-item'%>
+      <a href="<%= trackers_path %>" class="navbar-item">
+        <span class="icon has-text-info"><i class="fas fa-list"></i></span>
+        <span>My products</span>
+      </a>
+      <a href="<%= new_tracker_path %>" class="navbar-item">
+        <span class="icon has-text-success"><i class="fas fa-plus-square"></i></span>
+        <span>Track new product</span>
+      </a>
     </div>
-
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
         <% if signed_in? %>
           <%= button_to 'Sign out', sign_out_path, method: :delete, class: 'button is-light' %>
         <% else %>
-          <%= link_to 'Sign up', sign_up_path, class: 'button is-light' %>
-          <%= link_to 'Sign in', sign_in_path, class: 'button is-primary' %>
+          <%= link_to raw('<strong>Sign up</strong>'), sign_up_path, class: 'button is-primary' %>
+          <%= link_to 'Log in', sign_in_path, class: 'button is-light' %>
         <% end %>
         </div>
       </div>
