@@ -1,31 +1,23 @@
 <h1 class="title is-2">My Trackers</h1>
-
-<table class="table is-striped is-fullwidth is-hoverable is-bordered">
+<table class="table is-striped is-fullwidth is-hoverable">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Url</th>
+      <th>Product</th>
+      <th>URL</th>
       <th>Threshold price</th>
-      <th>Status</th>
-      <th>Actions</th>
+      <th></th>
     </tr>
   </thead>
-
   <tbody>
     <% @trackers.each do |tracker| %>
       <tr>
         <td><%= tracker.title %></td>
-        <td><%= tracker.url %></td>
+        <td>
+          <%= tracker.url.truncate(40) %> <a href="<%= tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a>
+        </td>
         <td><%= tracker.display_price_euros %></td>
         <td>
-          <% if tracker.enabled %>
-            <span class="tag is-success">Enabled</span>
-          <% else %>
-            <span class="tag is-danger">Disabled</span>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to tracker_path(tracker), class: 'button is-info' do %>
+          <%= link_to tracker_path(tracker), class: 'button is-primary' do %>
             <span class="icon">
               <i class="fa fa-lg fa-search-plus"></i>
             </span>

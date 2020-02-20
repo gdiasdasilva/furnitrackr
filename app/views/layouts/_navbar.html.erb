@@ -1,4 +1,4 @@
-<nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <strong>Furnitrackr</strong>
@@ -12,7 +12,7 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a href="<%= trackers_path %>" class="navbar-item">
-        <span class="icon has-text-info"><i class="fas fa-list"></i></span>
+        <span class="icon has-text-warning"><i class="fas fa-list"></i></span>
         <span>My products</span>
       </a>
       <a href="<%= new_tracker_path %>" class="navbar-item">
@@ -26,7 +26,7 @@
         <% if signed_in? %>
           <%= button_to 'Sign out', sign_out_path, method: :delete, class: 'button is-light' %>
         <% else %>
-          <%= link_to raw('<strong>Sign up</strong>'), sign_up_path, class: 'button is-primary' %>
+          <%= link_to raw('<strong>Sign up</strong>'), sign_up_path, class: 'button is-outlined is-primary is-inverted' %>
           <%= link_to 'Log in', sign_in_path, class: 'button is-light' %>
         <% end %>
         </div>

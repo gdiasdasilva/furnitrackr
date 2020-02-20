@@ -14,7 +14,15 @@
  *= require_self
  */
 
- @import "bulma";
+$info: #1f2424;
+$primary: #436d9a;
+$link: #209cee;
+$danger: #e74c3c;
+$warning: #f1b70e;
+$success: #2ecc71;
+
+@import "bulma";
+
 
 .notification {
   margin-top: 20px;
