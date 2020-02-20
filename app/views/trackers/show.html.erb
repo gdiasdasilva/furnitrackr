@@ -20,19 +20,26 @@
 
 <h3 class="title is-3">Price history</h3>
 
-<table class="table is-striped is-hoverable is-bordered">
-  <thead>
-    <th>Date</th>
-    <th>Price</th>
-  </thead>
-  <tbody>
-    <% @tracker.prices.order(created_at: :desc).each do |price| %>
-      <tr>
-        <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
-        <td><%= Money.new(price.value) %> €</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%#= line_chart @tracker.prices.group_by_day %>
+<div class="columns">
+  <div class="column is-one-third">
+    <table class="table is-fullwidth is-striped is-hoverable">
+      <thead>
+        <th>Last 10</th>
+        <th>Price</th>
+      </thead>
+      <tbody>
+        <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
+          <tr>
+            <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
+            <td><%= Money.new(price.value) %> €</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% if @tracker.prices.count > 4 %>
+    <div class="column">
+      <%= line_chart @tracker.prices.group_by_day %>
+    </div>
+  <% end %>
+</div>
