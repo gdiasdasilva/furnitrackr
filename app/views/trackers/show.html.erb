@@ -13,16 +13,19 @@
 <p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>
 <hr>
 
-<h3 class="title is-3">Price history</h3>
-
-<div class="content">
-<ul>
-<% @tracker.product.prices.order(created_at: :desc).each do |price| %>
-  <li><%= "#{Money.new(price.value)} € @ #{price.created_at.strftime("%B %-d, %Y")}" %></li>
-<% end %>
-</ul>
-</div>
-
 <%= form_with url: sync_tracker_path(@tracker), local: true do |form| %>
   <% form.submit 'Sync', class: 'button is-danger' %>
 <% end %>
+<br>
+
+<h3 class="title is-3">Price history</h3>
+
+<div class="content">
+  <ul>
+  <% @tracker.prices.order(created_at: :desc).each do |price| %>
+    <li><%= "#{Money.new(price.value)} € @ #{price.created_at.strftime("%B %-d, %Y")}" %></li>
+  <% end %>
+  </ul>
+</div>
+
+<%= line_chart @tracker.prices.group_by_day %>
