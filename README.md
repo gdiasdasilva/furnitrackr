@@ -2,7 +2,9 @@
 
 [![Codeship Status for gdiasdasilva/furnitrackr](https://app.codeship.com/projects/4f9aa7c0-3326-0138-cd31-265415f14eb5/status?branch=master)](https://app.codeship.com/projects/385596)
 
-Furnitrackr is a price tracker for your products. Any user may add an URL for a product, set a threshold price and be notified when the product's price falls below that predefined value.
+Furnitrackr is a price tracker for your products.
+
+Any user may add an URL for a product, set a threshold price and be notified when the product's price falls below that predefined value.
 
 ## Versions
 
