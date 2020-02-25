@@ -52,16 +52,29 @@ RSpec.describe Tracker, type: :model do
   describe "#fetch_current_price" do
     before do
       stub_request(:get, 'http://example.com')
-      allow(FetchPriceFromProviderService).to receive_message_chain(:new, :call).and_return(500)
     end
 
     it "creates a new price record" do
-      expect { subject.fetch_current_price }.to change { Price.count }.by(1)
+      allow(FetchPriceFromProviderService).to receive_message_chain(:new, :call).and_return(500)
+      expect { subject.fetch_current_price }.to change(Price, :count).by(1)
 
       expect(Price.last).to have_attributes(
         product: product,
         value: 50000
       )
+    end
+
+    context "when price cannot be fetched" do
+      before do
+        stub_request(:get, 'http://example.com').to_return(status: 404)
+      end
+
+      it "returns an error and notifies Bugsnag" do
+        expect(Bugsnag).to receive(:notify)
+
+        expect { subject.fetch_current_price }.not_to change(Price, :count)
+        expect(subject.errors.full_messages.first).to eq "Could not fetch price from product URL."
+      end
     end
   end
 end
