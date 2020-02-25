@@ -10,6 +10,8 @@ class Tracker < ApplicationRecord
   validates :threshold_price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :user, presence: true
 
+  scope :enabled, -> { where(enabled: true) }
+
   def display_price_euros
     "#{Money.new(threshold_price)} €"
   end
