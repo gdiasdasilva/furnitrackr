@@ -7,7 +7,7 @@ class Tracker < ApplicationRecord
 
   validates :product_id, presence: true
   validates :url, presence: true
-  validates :threshold_price, presence: true
+  validates :threshold_price, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :user, presence: true
 
   def display_price_euros
@@ -15,7 +15,12 @@ class Tracker < ApplicationRecord
   end
 
   def fetch_current_price
-    current_price_euros = FetchPriceFromProviderService.new(url: url).call
+    begin
+      current_price_euros = FetchPriceFromProviderService.new(url: url).call
+    rescue RuntimeError => e
+      errors.add(:base, "Could not fetch price from product URL.")
+      Bugsnag.notify(e)
+    end
 
     if current_price_euros.present? && current_price_euros.positive?
       Price.create!(

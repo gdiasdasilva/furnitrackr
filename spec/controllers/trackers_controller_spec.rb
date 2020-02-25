@@ -59,6 +59,7 @@ RSpec.describe TrackersController do
 
       before do
         allow(ProductFromUrlService).to receive_message_chain(:new, :call).and_return(product)
+        allow_any_instance_of(Tracker).to receive(:fetch_current_price).and_return(true)
       end
 
       it "creates a new entry" do
@@ -78,6 +79,13 @@ RSpec.describe TrackersController do
       context "when a valid product is not retrieved" do
         it "does not create a new entry" do
           allow(ProductFromUrlService).to receive_message_chain(:new, :call).and_return(nil)
+          expect { subject }.to_not(change(Tracker, :count))
+        end
+      end
+
+      context 'when price cannot be fetched' do
+        it "does not create a new entry" do
+          allow_any_instance_of(Tracker).to receive(:fetch_current_price).and_return(false)
           expect { subject }.to_not(change(Tracker, :count))
         end
       end

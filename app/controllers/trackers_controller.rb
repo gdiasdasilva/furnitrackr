@@ -17,7 +17,7 @@ class TrackersController < ApplicationController
   def create
     @tracker = Tracker.new(tracker_params)
     @tracker.user = current_user
-    @tracker.threshold_price = tracker_params[:threshold_price].to_f * 100
+    @tracker.threshold_price = (tracker_params[:threshold_price].to_f * 100).to_i
 
     product = ProductFromUrlService.new(url: tracker_params[:url]).call
 
@@ -25,7 +25,7 @@ class TrackersController < ApplicationController
       @tracker.product = product
     end
 
-    if @tracker.save
+    if @tracker.fetch_current_price.present? && @tracker.save
       redirect_to @tracker, flash: { success: 'Tracker was successfully created.' }
     else
       render :new

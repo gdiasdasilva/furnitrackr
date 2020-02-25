@@ -356,7 +356,7 @@ Style/TrailingCommaInArguments:
     - comma
     - consistent_comma
     - no_comma
-  Enabled: true
+  Enabled: false
 
 Style/TrailingCommaInArrayLiteral:
   Description: 'Checks for trailing comma in array literals.'
