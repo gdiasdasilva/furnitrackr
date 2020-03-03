@@ -23,7 +23,6 @@ $success: #2ecc71;
 
 @import "bulma";
 
-
 .notification {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -31,6 +30,10 @@ $success: #2ecc71;
 
   &.success {
     @extend .is-success;
+  }
+
+  &.error {
+    @extend .is-danger;
   }
 
   &.alert {

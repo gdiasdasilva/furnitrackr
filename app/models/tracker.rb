@@ -17,6 +17,8 @@ class Tracker < ApplicationRecord
   end
 
   def fetch_current_price
+    return if prices.since(Date.today.beginning_of_day).any?
+
     begin
       current_price_euros = FetchPriceFromProviderService.new(url: url).call
     rescue RuntimeError => e
