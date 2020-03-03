@@ -4,7 +4,7 @@ if Rails.env.development? || Rails.env.test?
   namespace :dev do
     desc 'Sample data for local development environment'
     task prime: 'db:setup' do
-      user = User.create!(email: 'goncalo@example.com', password: 'password')
+      user = User.create!(email: 'goncalo@furnitrackr.com', password: 'password')
       p1 = Product.create!(provider_identifier: 's123456789', provider: :ikea)
       p2 = Product.create!(provider_identifier: 'abcdefghijk', provider: :ikea)
 
