@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-desc 'Fetch prices for all trackers in the app'
+desc "Fetch prices for all trackers in the app"
 task fetch_prices: :environment do
   @trackers_processed = []
   @trackers_to_notify = []

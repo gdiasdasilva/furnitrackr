@@ -83,7 +83,7 @@ RSpec.describe TrackersController do
         end
       end
 
-      context 'when price cannot be fetched' do
+      context "when price cannot be fetched" do
         it "does not create a new entry" do
           allow_any_instance_of(Tracker).to receive(:fetch_current_price).and_return(false)
           expect { subject }.to_not(change(Tracker, :count))

@@ -26,7 +26,7 @@ class TrackersController < ApplicationController
     end
 
     if @tracker.fetch_current_price.present? && @tracker.save
-      redirect_to @tracker, flash: { success: 'Tracker was successfully created.' }
+      redirect_to @tracker, flash: { success: "Tracker was successfully created." }
     else
       render :new
     end
@@ -34,14 +34,14 @@ class TrackersController < ApplicationController
 
   def destroy
     @tracker.destroy
-    redirect_to trackers_url, notice: 'Tracker was successfully destroyed.'
+    redirect_to trackers_url, notice: "Tracker was successfully destroyed."
   end
 
   def sync
     if @tracker.fetch_current_price.present?
-      redirect_to @tracker, flash: { success: 'Tracker was successfully synced.' }
+      redirect_to @tracker, flash: { success: "Tracker was successfully synced." }
     else
-      redirect_to @tracker, flash: { error: 'Error while syncing tracker. Please try again later.' }
+      redirect_to @tracker, flash: { error: "Error while syncing tracker. Please try again later." }
     end
   end
 

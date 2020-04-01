@@ -3,7 +3,7 @@
 class FetchPriceFromProviderService
   CURRENT_PRICE_SELECTOR = ".product-pip__price .product-pip__price__value"
 
-  def initialize(url: '')
+  def initialize(url: "")
     @url = url
   end
 
@@ -25,7 +25,7 @@ class FetchPriceFromProviderService
   private
 
   def strip_price(value)
-    v = value.delete('€.')
-    v.gsub(',', '.')
+    v = value.delete("€.")
+    v.gsub(",", ".")
   end
 end

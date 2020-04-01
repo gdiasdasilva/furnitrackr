@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Tracker, type: :model do
   let(:user) { create(:user) }
@@ -6,8 +6,8 @@ RSpec.describe Tracker, type: :model do
 
   subject do
     described_class.new(
-      title: 'Example title',
-      url: 'http://example.com',
+      title: "Example title",
+      url: "http://example.com",
       threshold_price: 500,
       user: user,
       product: product,
@@ -51,7 +51,7 @@ RSpec.describe Tracker, type: :model do
 
   describe "#fetch_current_price" do
     before do
-      stub_request(:get, 'http://example.com')
+      stub_request(:get, "http://example.com")
     end
 
     it "creates a new price record" do
@@ -66,7 +66,7 @@ RSpec.describe Tracker, type: :model do
 
     context "when price cannot be fetched" do
       before do
-        stub_request(:get, 'http://example.com').to_return(status: 404)
+        stub_request(:get, "http://example.com").to_return(status: 404)
       end
 
       it "returns an error and notifies Bugsnag" do
