@@ -1,7 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "notifications@furnitrackr.com"
-
-  def price_notification
+  def price_drop_notification
     @user    = params[:user]
     @tracker = params[:tracker]
     @url     = root_url

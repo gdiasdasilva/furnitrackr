@@ -25,7 +25,6 @@ task fetch_prices: :environment do
   puts "Not processed: #{@trackers_not_processed.map(&:id)}"
 
   @trackers_to_notify.each do |t|
-    puts "User '#{t.user.email}' should be notified for " \
-        "'#{t.title}' because #{t.prices.order(:created_at).last.value} <= #{t.threshold_price}"
+    UserMailer.with(user: t.user, tracker: t).price_drop_notification.deliver_now
   end
 end
