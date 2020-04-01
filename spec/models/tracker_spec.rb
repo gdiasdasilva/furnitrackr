@@ -77,4 +77,10 @@ RSpec.describe Tracker, type: :model do
       end
     end
   end
+
+  describe "#display_price_euros" do
+    it "returns the price in euros with symbol" do
+      expect(subject.display_price_euros).to eq "5.00€"
+    end
+  end
 end
