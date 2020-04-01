@@ -13,7 +13,7 @@ class Tracker < ApplicationRecord
   scope :enabled, -> { where(enabled: true) }
 
   def display_price_euros
-    "#{Money.new(threshold_price)} €"
+    "#{Money.new(threshold_price)}€"
   end
 
   def fetch_current_price

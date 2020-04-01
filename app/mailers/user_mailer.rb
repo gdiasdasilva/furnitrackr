@@ -3,9 +3,9 @@ class UserMailer < ApplicationMailer
 
   def price_notification
     @user    = params[:user]
-    @url     = 'http://furnitrackr.com'
     @tracker = params[:tracker]
+    @url     = root_url
 
-    mail(to: @user.email, subject: 'Furnitrackr | Your price has dropped!')
+    mail(to: @user.email, subject: 'Furnitrackr | Price has dropped!')
   end
 end

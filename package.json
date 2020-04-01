@@ -1,5 +1,5 @@
 {
-  "name": "price_tracker",
+  "name": "furnitrackr",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",

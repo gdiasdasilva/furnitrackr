@@ -5,8 +5,9 @@
   </head>
   <body>
     <p>Hurry up!</p>
-    <p>The price for your tracker <strong><%= @tracker.title %></strong> has dropped below your predefined threshold price.</p>
-    <p>To login to the site and check the most recent prices, just follow <a href="<%= @url %>">this</a> link.</p>
+    <p>The price for <strong><%= @tracker.title %></strong> has dropped below <%= @tracker.display_price_euros %>.</p>
+    <p>Login and check the most recent prices by following <a href="<%= @url %>">this</a> link.</p>
     <p>Have a great day!</p>
+    <p><strong>— <a href="<%= @url %>">Furnitrackr.com</a></strong></p>
   </body>
 </html>
