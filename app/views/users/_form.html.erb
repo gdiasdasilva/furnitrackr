@@ -1,13 +1,13 @@
 <div class="field">
   <label class="label">Email</label>
   <div class="control">
-    <%= form.text_field :email, type: 'email', class: 'input', placeholder: 'e.g. alexsmith@gmail.com' %>
+    <%= form.text_field :email, type: 'email', class: 'input', placeholder: 'e.g. alexsmith@gmail.com', required: true %>
   </div>
 </div>
 
 <div class="field">
   <label class="label">Password</label>
   <div class="control">
-    <%= form.password_field :password, class: 'input', placeholder: '********' %>
+    <%= form.password_field :password, class: 'input', placeholder: '********', required: true %>
   </div>
 </div>
