@@ -12,6 +12,8 @@ class Tracker < ApplicationRecord
 
   scope :enabled, -> { where(enabled: true) }
 
+  before_save :cleanup_url
+
   def display_price_euros
     "#{Money.new(threshold_price)}€"
   end
@@ -32,5 +34,12 @@ class Tracker < ApplicationRecord
         value: (current_price_euros * 100).to_i,
       )
     end
+  end
+
+  private
+
+  def cleanup_url
+    uri = URI(self.url)
+    self.url = "#{uri.scheme}://#{uri.host}#{uri.path}"
   end
 end

@@ -14,39 +14,52 @@ RSpec.describe Tracker, type: :model do
     )
   end
 
-  it "is valid with valid attributes" do
-    expect(subject).to be_valid
-  end
+  describe "validations" do
+    it "is valid with valid attributes" do
+      expect(subject).to be_valid
+    end
 
-  it "is not valid without a user" do
-    subject.user = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a user" do
+      subject.user = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a product" do
-    subject.product = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a product" do
+      subject.product = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a url" do
-    subject.url = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a url" do
+      subject.url = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid without a threshold_price" do
-    subject.threshold_price = nil
-    expect(subject).to_not be_valid
-  end
+    it "is not valid without a threshold_price" do
+      subject.threshold_price = nil
+      expect(subject).to_not be_valid
+    end
 
-  it "is not valid with a negative threshold_price" do
-    subject.threshold_price = -50
-    expect(subject).to_not be_valid
+    it "is not valid with a negative threshold_price" do
+      subject.threshold_price = -50
+      expect(subject).to_not be_valid
+    end
   end
 
   describe "associations" do
     it { should have_many :prices }
     it { should belong_to :product }
     it { should belong_to :user }
+  end
+
+  describe "callbacks" do
+    describe "#cleanup_url" do
+      it "removes query params from the url" do
+        subject.url = "https://example.com/my-product/oh-no?foo=bar&baz=fly"
+        subject.save
+
+        expect(subject.url).to eq "https://example.com/my-product/oh-no"
+      end
+    end
   end
 
   describe "#fetch_current_price" do
