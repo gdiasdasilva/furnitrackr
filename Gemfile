@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.5.5"
+ruby "2.6.6"
 
 gem "bootsnap", ">= 1.4.2", require: false
 gem "bugsnag"
@@ -15,7 +15,7 @@ gem "jbuilder", "~> 2.7"
 gem "money-rails"
 gem "pg"
 gem "puma", "~> 3.11"
-gem "rails", "~> 6.0.0"
+gem "rails", "6.0.2.2"
 gem "sass-rails", "~> 5"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
@@ -25,7 +25,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "pry-byebug"
-  gem "rspec-rails", "~> 4.0.0.beta4"
+  gem "rspec-rails", "~> 4.0.0"
 end
 
 group :development do
