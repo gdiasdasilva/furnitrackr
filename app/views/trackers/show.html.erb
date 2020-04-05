@@ -13,33 +13,33 @@
 <p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>
 <hr>
 
-<%= form_with url: sync_tracker_path(@tracker), local: true do |form| %>
-  <% form.submit 'Fetch price', class: 'button is-danger' %>
-<% end %>
-<br>
-
 <h3 class="title is-3">Price history</h3>
 
-<div class="columns">
-  <div class="column is-one-third">
-    <table class="table is-fullwidth is-striped is-hoverable">
-      <thead>
-        <th>Last 10</th>
-        <th>Price</th>
-      </thead>
-      <tbody>
-        <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
-          <tr>
-            <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
-            <td><%= Money.new(price.value) %> €</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <% if @tracker.prices.count > 4 %>
-    <div class="column">
-      <%= line_chart @tracker.prices.group_by_day %>
+<% if @tracker.prices.present? %>
+  <div class="columns">
+    <div class="column is-one-third">
+      <table class="table is-fullwidth is-striped is-hoverable">
+        <thead>
+          <th>Last 10</th>
+          <th>Price</th>
+        </thead>
+        <tbody>
+          <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
+            <tr>
+              <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
+              <td><%= Money.new(price.value) %> €</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  <% end %>
-</div>
+    <% if @tracker.prices.count > 4 %>
+      <div class="column">
+        <%= line_chart @tracker.prices.group_by_day %>
+      </div>
+    <% end %>
+  </div>
+<% else%>
+  <p>No prices available yet.</p>
+<% end %>
+
