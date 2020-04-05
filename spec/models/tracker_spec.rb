@@ -89,6 +89,15 @@ RSpec.describe Tracker, type: :model do
         expect(subject.errors.full_messages.first).to eq "Could not fetch price from product URL."
       end
     end
+
+    context "when a price already exists for the current day" do
+      let!(:price_1) { create(:price, product: product, created_at: 3.hours.ago) }
+      let!(:price_2) { create(:price, product: product, created_at: 4.hours.ago) }
+
+      it "returns the last fetched price" do
+        expect(subject.fetch_current_price.id).to eq price_1.id
+      end
+    end
   end
 
   describe "#display_price_euros" do
