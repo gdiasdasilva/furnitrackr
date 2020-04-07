@@ -14,7 +14,7 @@
 
   <body>
     <%= render "layouts/navbar" %>
-    <div class="container is-fluid">
+    <div class="container">
       <% if flash.present? %>
         <% flash.each do |key, value| %>
           <div class="notification <%= key %>">
