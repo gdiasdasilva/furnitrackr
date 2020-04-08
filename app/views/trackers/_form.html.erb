@@ -1,27 +1,27 @@
 <%= form_with(model: tracker, local: true) do |form| %>
   <div class="field">
-    <%= form.label 'Tracker name', class: 'label' %>
+    <%= form.label :title, "Tracker name", class: "label" %>
     <div class="control">
-      <%= form.text_field :title, class: 'input', placeholder: 'e.g. Incredible sofa bed', required: true %>
+      <%= form.text_field :title, class: "input", placeholder: "e.g. Incredible sofa bed", required: true %>
     </div>
   </div>
 
   <div class="field">
-    <%= form.label 'Product URL', class: 'label' %>
+    <%= form.label :url, "Product URL", class: "label" %>
     <div class="control">
-      <%= form.text_field :url, class: 'input', placeholder: 'e.g. https://www.example.com/my-sofa-12345', type: 'url', required: true %>
+      <%= form.text_field :url, class: "input", placeholder: "e.g. https://www.example.com/my-sofa-12345", type: "url", required: true %>
     </div>
   </div>
 
   <div class="field">
-    <%= form.label 'Threshold price', class: 'label' %>
+    <%= form.label :threshold_price, "Threshold price (€)", class: "label" %>
     <div class="control">
-      <%= form.number_field :threshold_price, class: 'input', placeholder: 'e.g. 199.99', min: 0, step: 0.01, required: true %>
+      <%= form.number_field :threshold_price, class: "input", placeholder: "e.g. 199.99", min: 0, step: 0.01, required: true %>
     </div>
     <p class="help">This value represents the threshold below which you'll be notified.</p>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Submit', class: 'button is-primary' %>
+    <%= form.submit "Submit", class: "button is-primary" %>
   </div>
 <% end %>
