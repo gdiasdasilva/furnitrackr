@@ -91,6 +91,10 @@ RSpec.describe Tracker, type: :model do
     end
 
     context "when a price already exists for the current day" do
+      before do
+        travel_to Time.new(2020, 03, 02, 12)
+      end
+
       let!(:price_1) { create(:price, product: product, created_at: 3.hours.ago) }
       let!(:price_2) { create(:price, product: product, created_at: 4.hours.ago) }
 
