@@ -35,7 +35,7 @@
     </div>
     <% if @tracker.prices.count > 4 %>
       <div class="column">
-        <%= line_chart @tracker.prices.group_by_day %>
+        <%= line_chart @tracker.prices.group_by_day, id: "prices-chart" %>
       </div>
     <% end %>
   </div>
