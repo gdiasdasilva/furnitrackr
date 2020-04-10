@@ -40,3 +40,15 @@ $success: #2ecc71;
     @extend .is-warning;
   }
 }
+
+
+@media (max-width: 1024px) {
+  .navbar {
+    .navbar-item {
+      .button.is-outlined.is-primary.is-inverted {
+        color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+}
