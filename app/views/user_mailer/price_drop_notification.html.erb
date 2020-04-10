@@ -6,8 +6,8 @@
   <body>
     <p>Hurry up!</p>
     <p>The price for <strong><%= @tracker.title %></strong> has dropped below <%= @tracker.display_price_euros %>.</p>
-    <p>Login and check the most recent prices by following <a href="<%= @url %>">this</a> link.</p>
+    <p>Check the most recent prices <a href="<%= url_for(@tracker) %>">here</a>.</p>
     <p>Have a great day!</p>
-    <p><strong>— <a href="<%= @url %>">Furnitrackr.com</a></strong></p>
+    <p><strong>— <a href="<%= root_url %>">Furnitrackr.com</a></strong></p>
   </body>
 </html>
