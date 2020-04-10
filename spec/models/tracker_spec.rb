@@ -109,4 +109,40 @@ RSpec.describe Tracker, type: :model do
       expect(subject.display_price_euros).to eq "5.00€"
     end
   end
+
+  describe "#last_fetched_price" do
+    let!(:price) { create(:price, product: product, created_at: 1.day.ago) }
+
+    before do
+      create(:price, product: product, created_at: 3.days.ago)
+      create(:price, product: product, created_at: 4.days.ago)
+    end
+
+    it "returns the most recent price" do
+      expect(subject.last_fetched_price.id).to eq price.id
+    end
+  end
+
+  describe ".to_notify" do
+    let(:tracker_1) { create(:tracker, threshold_price: 500) }
+    let(:tracker_2) { create(:tracker, threshold_price: 600) }
+    let(:tracker_3) { create(:tracker, threshold_price: 700) }
+    let(:tracker_4) { create(:tracker, threshold_price: 700) }
+    let(:tracker_5) { create(:tracker, threshold_price: 700) }
+
+    before do
+      create(:price, value: 499, product: tracker_1.product)
+      create(:price, value: 599, product: tracker_2.product)
+      create(:price, value: 700, product: tracker_3.product, created_at: 2.days.ago)
+      create(:price, value: 701, product: tracker_3.product)
+      create(:price, value: 701, product: tracker_4.product)
+      create(:price, value: 701, product: tracker_5.product)
+      create(:price, value: 700, product: tracker_5.product)
+    end
+
+    it "returns trackers to with last price below threshold value" do
+      trackers = described_class.to_notify
+      expect(trackers.pluck(:id)).to match_array [tracker_1.id, tracker_2.id, tracker_5.id]
+    end
+  end
 end

@@ -36,10 +36,19 @@ class Tracker < ApplicationRecord
     end
   end
 
+  def last_fetched_price
+    prices.order(created_at: :desc).first
+  end
+
+  def self.to_notify
+    trackers = Tracker.enabled.joins(:prices).distinct(:id)
+    trackers.select { |t| t.last_fetched_price.value <= t.threshold_price }
+  end
+
   private
 
   def cleanup_url
-    uri = URI(self.url)
+    uri = URI(url)
     self.url = "#{uri.scheme}://#{uri.host}#{uri.path}"
   end
 end
