@@ -39,6 +39,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
@@ -47,6 +48,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.middleware.use Clearance::BackDoor
-
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
+  config.active_job.queue_adapter = :inline
 end
