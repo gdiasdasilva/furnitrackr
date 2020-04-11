@@ -1,6 +1,20 @@
 require "rails_helper"
 
 RSpec.describe PagesController do
+  describe "GET homepage" do
+    it "renders the homepage template" do
+      get :homepage
+      expect(response).to render_template("homepage")
+    end
+  end
+
+  describe "GET how_does_it_work" do
+    it "renders the how_does_it_work template" do
+      get :how_does_it_work
+      expect(response).to render_template("how_does_it_work")
+    end
+  end
+
   describe "GET contact_us" do
     it "renders the contact_us template" do
       get :contact_us
