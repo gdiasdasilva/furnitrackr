@@ -6,37 +6,39 @@
   <br>
   <%= link_to "Add a tracker", new_tracker_path, class: "button is-primary" %>
 <% else %>
-  <table class="table is-striped is-fullwidth is-hoverable">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>URL</th>
-        <th>Threshold price</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @trackers.each do |tracker| %>
+  <div class="table-container">
+    <table class="table is-striped is-fullwidth is-hoverable">
+      <thead>
         <tr>
-          <td><%= tracker.title %></td>
-          <td>
-            <%= tracker.url.truncate(40) %> <a href="<%= tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a>
-          </td>
-          <td><%= tracker.display_price_euros %></td>
-          <td>
-            <%= link_to tracker_path(tracker), class: "button is-primary tracker-details" do %>
-              <span class="icon">
-                <i class="fa fa-lg fa-search-plus"></i>
-              </span>
-            <% end %>
-            <%= link_to tracker_path(tracker), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger' do %>
-              <span class="icon ">
-                <i class="fas fa-lg fa-trash"></i>
-              </span>
-            <% end %>
-          </td>
+          <th>Product</th>
+          <th>URL</th>
+          <th>Threshold price</th>
+          <th></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @trackers.each do |tracker| %>
+          <tr>
+            <td><%= tracker.title %></td>
+            <td>
+              <%= tracker.url.truncate(40) %> <a href="<%= tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a>
+            </td>
+            <td><%= tracker.display_price_euros %></td>
+            <td>
+              <%= link_to tracker_path(tracker), class: "button is-primary tracker-details" do %>
+                <span class="icon">
+                  <i class="fa fa-lg fa-search-plus"></i>
+                </span>
+              <% end %>
+              <%= link_to tracker_path(tracker), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger' do %>
+                <span class="icon ">
+                  <i class="fas fa-lg fa-trash"></i>
+                </span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
