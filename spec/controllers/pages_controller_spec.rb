@@ -28,15 +28,10 @@ RSpec.describe PagesController do
     context "when params are correct" do
       let(:params) { { email: "furnitrackr@example.com", message: "This is an example message." } }
 
-      it "sends an e-mail" do
-        double_mailer = double("user mailer")
-        expect(UserMailer).to receive(:with).
-          with(email: "furnitrackr@example.com", message: "This is an example message.").
-          and_return(double_mailer)
-        expect(double_mailer).to receive_message_chain(:user_contact_submission, :deliver_now)
-
+      it "enqueues sending the email" do
+        allow(SendUserContactSubmissionJob).to receive(:perform_later)
         subject
-        expect(flash[:success]).to eq "Your message was successfully submitted."
+        expect(SendUserContactSubmissionJob).to have_received(:perform_later)
       end
     end
 
