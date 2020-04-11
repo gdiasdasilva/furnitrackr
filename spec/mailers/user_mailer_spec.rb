@@ -23,10 +23,7 @@ RSpec.describe UserMailer, type: :mailer do
 
   describe "#user_contact_submission" do
     let(:email) do
-      described_class.with(
-        email: "test@example.com",
-        message: "This is my e-mail's content.",
-      ).user_contact_submission
+      described_class.user_contact_submission("This is my e-mail's content.", "test@example.com")
     end
 
     it "should send an e-mail" do
@@ -36,7 +33,7 @@ RSpec.describe UserMailer, type: :mailer do
       expect(email.to).to eq [ENV["PERSONAL_EMAIL_ADDRESS"]]
       expect(email.subject).to eq "Furnitrackr | New contact submission"
       expect(email.body.include?("This is my e-mail&#39;s content.")).to eq true
-      expect(email.body.include?("test@example.com")).to eq true
+      expect(email.body.include?("<strong>Sender:</strong> test@example.com")).to eq true
     end
   end
 end
