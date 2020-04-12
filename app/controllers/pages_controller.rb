@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
   def send_contact
     if submit_message?
-      SendUserContactSubmissionJob.perform_later(params[:message], params[:email])
+      UserMailer.user_contact_submission(params[:message], params[:email]).deliver_now
       flash_message = { success: "Your message was successfully submitted." }
     else
       flash_message = { error: "Could not submit your message. Please try again later." }

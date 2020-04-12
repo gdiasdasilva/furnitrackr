@@ -28,10 +28,16 @@ RSpec.describe PagesController do
     context "when params are correct" do
       let(:params) { { email: "furnitrackr@example.com", message: "This is an example message." } }
 
-      it "enqueues sending the email" do
+      # Sending synchronously at the moment to reduce dyno costs
+      xit "enqueues sending the email" do
         allow(SendUserContactSubmissionJob).to receive(:perform_later)
         subject
         expect(SendUserContactSubmissionJob).to have_received(:perform_later)
+      end
+
+      it "sends the e-mail instantly" do
+        expect(UserMailer).to receive_message_chain(:user_contact_submission, :deliver_now)
+        subject
       end
     end
 
