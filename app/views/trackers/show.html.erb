@@ -1,45 +1,45 @@
-<h1 class="title is-1">
-  <%= @tracker.title %>
-  <% if @tracker.enabled %>
-    <span class="tag is-success">Enabled</span>
-  <% else %>
-    <span class="tag is-danger">Disabled</span>
-  <% end %>
-</h1>
-
-<h2 class="subtitle">Threshold price: <strong><%= @tracker.display_price_euros %></strong></h2>
-
-<hr>
-<p><strong>Tracking URL:</strong> <code><%= @tracker.url %></code></p>
-<hr>
-
-<h3 class="title is-3">Price history</h3>
-
-<% if @tracker.prices.present? %>
+<section>
   <div class="columns">
-    <div class="column is-one-third">
-      <table class="table is-fullwidth is-striped is-hoverable">
-        <thead>
-          <th>Date</th>
-          <th>Price</th>
-        </thead>
-        <tbody>
-          <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
-            <tr>
-              <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
-              <td><%= Money.new(price.value) %> €</td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="column content">
+      <h2 class="title is-2"><%= @tracker.title %></h2>
+      <hr>
+      <p class="tag is-rounded"><%= @tracker.url.truncate(40) %> <a href="<%= @tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a></p>
+      <p>You'll be notified via e-mail once the price for <strong><%= @tracker.title %></strong> falls below your predefined threshold of <strong><%= @tracker.display_price_euros %></strong>.</p>
     </div>
-    <% if @tracker.prices.count > 4 %>
-      <div class="column">
-        <%= line_chart @tracker.prices.group_by_day, id: "prices-chart" %>
-      </div>
-    <% end %>
   </div>
-<% else%>
-  <p>No prices available yet.</p>
-<% end %>
+  <div class="columns">
+    <div class="column prices-list">
+      <h3 class="title is-4">Price history</h3>
+      <div class="columns">
+          <% if @tracker.prices.present? %>
+            <div class="column is-one-third">
+              <table class="table is-fullwidth is-striped is-hoverable">
+                <thead>
+                  <th>Date</th>
+                  <th>Price</th>
+                </thead>
+                <tbody>
+                  <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
+                    <tr>
+                      <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
+                      <td><%= Money.new(price.value) %> €</td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <% if @tracker.prices.count > 0 %>
+              <div class="column">
+                <%= line_chart @tracker.prices.group_by_day, id: "prices-chart" %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="column">
+              <p>No prices available yet.</p>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</section>
 
