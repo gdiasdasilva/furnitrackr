@@ -2,9 +2,7 @@
 <hr>
 
 <% if @trackers.empty? %>
-  <p>You aren't tracking any products yet.</p>
-  <br>
-  <%= link_to "Add a tracker", new_tracker_path, class: "button is-primary" %>
+  <p class="content">You aren't tracking any products yet.</p>
 <% else %>
   <div class="table-container">
     <table class="table is-striped is-fullwidth is-hoverable">
@@ -42,3 +40,5 @@
     </table>
   </div>
 <% end %>
+
+<%= link_to "Track another product", new_tracker_path, class: 'button is-success is-' %>
