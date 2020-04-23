@@ -40,9 +40,18 @@ class Tracker < ApplicationRecord
     prices.order(created_at: :desc).first
   end
 
+  def price_changed?
+    last_price, penultimate_price = prices.order(created_at: :desc).first(2)
+    return true if last_price.blank? || penultimate_price.blank?
+
+    last_price.value != penultimate_price.value
+  end
+
   def self.to_notify
     trackers = Tracker.enabled.joins(:prices).distinct(:id)
-    trackers.select { |t| t.last_fetched_price.value <= t.threshold_price }
+    trackers.select do |t|
+      t.last_fetched_price.value <= t.threshold_price && t.price_changed?
+    end
   end
 
   private
