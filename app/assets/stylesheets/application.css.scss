@@ -68,3 +68,10 @@ $success: #2ecc71;
     font-size: 12px;
   }
 }
+
+.magical-underline {
+  background-image: linear-gradient($primary 0%, $primary 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+}
