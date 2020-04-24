@@ -33,8 +33,8 @@ RSpec.describe FetchPriceFromProviderService do
       context "when price includes decimals separated with comma" do
         let!(:stub) do
           stub_request(:get, TEST_URL).
-            to_return(status: 200, body: '<html><span class="product-pip__price">'\
-              '<span class="product-pip__price__value">10,99€</span></span></html>')
+            to_return(status: 200, body: '<html><span class="range-revamp-price">'\
+              '<span class="range-revamp-price__integer">10,99€</span></span></html>')
         end
 
         it "parses it correctly" do
@@ -46,8 +46,8 @@ RSpec.describe FetchPriceFromProviderService do
       context "when price includes thousands separated with dot" do
         let!(:stub) do
           stub_request(:get, TEST_URL).
-            to_return(status: 200, body: '<html><span class="product-pip__price">'\
-              '<span class="product-pip__price__value">1.099,99€</span></span></html>')
+            to_return(status: 200, body: '<html><span class="range-revamp-price">'\
+              '<span class="range-revamp-price__integer">1.099,99€</span></span></html>')
         end
 
         it "parses it correctly" do
