@@ -1,0 +1,15 @@
+<h1 class="title is-2">Edit <%= @tracker.title %></h1>
+<hr>
+
+<% if @tracker.errors.any? %>
+<div class="notification is-danger is-light content">
+  <p><strong>There was an error with your submission:</strong></p>
+  <ul>
+  <% @tracker.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= render 'form', tracker: @tracker %>

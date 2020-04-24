@@ -9,7 +9,7 @@
   <div class="field">
     <%= form.label :url, "Product URL", class: "label" %>
     <div class="control">
-      <%= form.text_field :url, class: "input", placeholder: "e.g. https://www.ikea.com/my-sofa-12345", type: "url", required: true %>
+      <%= form.text_field :url, class: "input", placeholder: "e.g. https://www.ikea.com/my-sofa-12345", type: "url", required: true, disabled: @tracker.url.present? %>
     </div>
   </div>
 

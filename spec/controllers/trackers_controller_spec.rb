@@ -98,6 +98,44 @@ RSpec.describe TrackersController do
       end
     end
 
+    describe "GET edit" do
+      let(:tracker) { create(:tracker, user: user) }
+
+      it "renders the edit template" do
+        get :edit, params: { id: tracker.id }
+        expect(response).to render_template("edit")
+      end
+    end
+
+    describe "PATCH update" do
+      let(:params) do
+        {
+          title: "my product",
+          url: "http://example.com/a-new-url",
+          threshold_price: 299.99,
+        }
+      end
+      let(:tracker) do
+        create(
+          :tracker,
+          title: "old title",
+          threshold_price: 1000,
+          url: "http://old-url.com",
+          user: user
+        )
+      end
+
+      it "updates the title and threshold price of a tracker" do
+        patch :update, params: { tracker: params, id: tracker.id }
+        tracker.reload
+        expect(tracker).to have_attributes({
+                                             title: "my product",
+                                             url: "http://old-url.com",
+                                             threshold_price: 29999,
+                                           })
+      end
+    end
+
     describe "DELETE destroy" do
       let!(:tracker_1) { create(:tracker, user: user) }
 

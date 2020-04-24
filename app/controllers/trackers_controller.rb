@@ -2,7 +2,7 @@
 
 class TrackersController < ApplicationController
   before_action :require_login
-  before_action :set_tracker, only: %i[show destroy sync]
+  before_action :set_tracker, only: %i[show edit update destroy]
 
   def index
     @trackers = Tracker.where(user: current_user)
@@ -32,17 +32,25 @@ class TrackersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if tracker_params[:threshold_price].present?
+      @tracker.threshold_price = (tracker_params[:threshold_price].to_f * 100).to_i
+    end
+
+    @tracker.title = tracker_params[:title] if tracker_params[:title].present?
+
+    if @tracker.save
+      redirect_to @tracker, flash: { success: "Tracker was successfully updated." }
+    else
+      render "edit"
+    end
+  end
+
   def destroy
     @tracker.destroy
     redirect_to trackers_url, notice: "Tracker was successfully destroyed."
-  end
-
-  def sync
-    if @tracker.fetch_current_price.present?
-      redirect_to @tracker, flash: { success: "Tracker was successfully synced." }
-    else
-      redirect_to @tracker, flash: { error: "Error while syncing tracker. Please try again later." }
-    end
   end
 
   private
