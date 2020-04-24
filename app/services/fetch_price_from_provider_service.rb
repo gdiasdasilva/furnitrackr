@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FetchPriceFromProviderService
-  CURRENT_PRICE_SELECTOR = ".product-pip__price .product-pip__price__value"
+  CURRENT_PRICE_SELECTOR = ".range-revamp-price .range-revamp-price__integer"
 
   def initialize(url: "")
     @url = url
