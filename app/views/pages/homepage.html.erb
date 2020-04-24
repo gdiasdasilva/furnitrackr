@@ -1,12 +1,23 @@
 <section class="hero-container">
-  <div class="hero is-primary is-fullheight-with-navbar">
+  <div class="hero is-fullheight">
+    <div class="hero-head">
+      <%= render "layouts/navbar" %>
+    </div>
     <div class="hero-body">
       <div class="container has-text-centered">
-        <h1 class="title">Welcome to Furnitrackr</h1>
-        <hr>
-        <h2 class="subtitle">We track your favorite products' price history for you.</h2>
-        <%= link_to "Getting started", how_does_it_work_path, class: "button is-info" %>
+        <h1 class="title has-text-white">Welcome to Furnitrackr</h1>
+        <h2 class="subtitle has-text-white">We track your favorite products' price for you.</h2>
+        <%= link_to "Getting started", how_does_it_work_path, class: "button is-info is-outlined is-inverted" %>
       </div>
+    </div>
+    <div class="hero-footer has-text-right has-text-white">
+      <span class="photo-by">Photo by</span>
+      <a style="background-color:black;color:white;text-decoration:none;padding:4px 6px;font-family:-apple-system, BlinkMacSystemFont, &quot;San Francisco&quot;, &quot;Helvetica Neue&quot;, Helvetica, Ubuntu, Roboto, Noto, &quot;Segoe UI&quot;, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:1.2;display:inline-block;border-radius:3px" href="https://unsplash.com/@alexagorn?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Alexandra Gorn">
+        <span style="display:inline-block;padding:2px 3px">
+          <svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-2px;fill:white" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M10 9V0h12v9H10zm12 5h10v18H0V14h10v9h12v-9z"></path></svg>
+        </span>
+        <span style="display:inline-block;padding:2px 3px">Alexandra Gorn</span>
+      </a>
     </div>
   </div>
 </section>
