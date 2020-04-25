@@ -77,7 +77,7 @@ RSpec.describe Tracker, type: :model do
       )
     end
 
-    context "when price cannot be fetched" do
+    context "when price cannot be fetched due to request failure" do
       before do
         stub_request(:get, "http://example.com").to_return(status: 404)
       end
@@ -90,9 +90,21 @@ RSpec.describe Tracker, type: :model do
       end
     end
 
+    context "when price is not found on page" do
+      before do
+        stub_request(:get, "http://example.com")
+      end
+
+      it "returns an error message" do
+        allow(FetchPriceFromProviderService).to receive_message_chain(:new, :call).and_return(nil)
+        expect { subject.fetch_current_price }.not_to change(Price, :count)
+        expect(subject.errors.full_messages.first).to eq "Could not fetch price from product URL."
+      end
+    end
+
     context "when a price already exists for the current day" do
       before do
-        travel_to Time.new(2020, 03, 02, 12)
+        travel_to Time.new(2020, 3, 2, 12)
       end
 
       let!(:price_1) { create(:price, product: product, created_at: 3.hours.ago) }

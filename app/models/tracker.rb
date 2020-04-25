@@ -26,14 +26,19 @@ class Tracker < ApplicationRecord
     rescue RuntimeError => e
       errors.add(:base, "Could not fetch price from product URL.")
       Bugsnag.notify(e)
+      return
     end
 
     if current_price_euros.present? && current_price_euros.positive?
-      Price.create!(
+      price = Price.create!(
         product: product,
         value: (current_price_euros * 100).to_i,
       )
+    else
+      errors.add(:base, "Could not fetch price from product URL.")
     end
+
+    price
   end
 
   def last_fetched_price
