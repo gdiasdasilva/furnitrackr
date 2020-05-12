@@ -26,9 +26,11 @@ RSpec.describe PagesController do
     subject { post :send_contact, params: params }
 
     context "when params are correct" do
-      let(:params) { { email: "furnitrackr@example.com", message: "This is an example message." } }
+      let(:params) do
+        { email: "furnitrackr@example.com", message: "This is an example message.", math: "5" }
+      end
 
-      # Sending synchronously at the moment to reduce dyno costs
+      # TODO: Sending synchronously at the moment to reduce dyno costs
       xit "enqueues sending the email" do
         allow(SendUserContactSubmissionJob).to receive(:perform_later)
         subject
@@ -42,7 +44,7 @@ RSpec.describe PagesController do
     end
 
     context "when params are incorrect" do
-      let(:params) { { message: "This is an example message." } }
+      let(:params) { { message: "This is an example message.", math: "5" } }
 
       it "shows an error message" do
         subject

@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
   layout "homepage", only: [:homepage]
+  before_action :detect_spam, only: [:send_contact]
+
+  SPAM_MATH_SOLUTION = 5
 
   def homepage; end
 
@@ -22,5 +25,11 @@ class PagesController < ApplicationController
 
   def submit_message?
     params[:message].present? && params[:email].present?
+  end
+
+  def detect_spam
+    return if params[:math].to_i == SPAM_MATH_SOLUTION
+
+    redirect_to contact_us_path, flash: { warning: "Gotcha." }
   end
 end

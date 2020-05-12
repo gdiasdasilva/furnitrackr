@@ -38,6 +38,7 @@ end
 
 group :test do
   gem "capybara", ">= 2.15"
+  gem "launchy"
   gem "rails-controller-testing"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
