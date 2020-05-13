@@ -7,4 +7,8 @@ class UserMailerPreview < ActionMailer::Preview
     message = "<p style=\"color: red;\">Hi, my name is Ringo and I want to report a bug.</p>"
     UserMailer.user_contact_submission(message, "example@furnitrackr.com")
   end
+
+  def registration_confirmation
+    UserMailer.registration_confirmation(User.first)
+  end
 end

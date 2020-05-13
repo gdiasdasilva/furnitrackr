@@ -12,4 +12,9 @@ class UserMailer < ApplicationMailer
 
     mail(to: ENV["PERSONAL_EMAIL_ADDRESS"], subject: "Furnitrackr | New contact submission")
   end
+
+  def registration_confirmation(user)
+    @user = user
+    mail(to: @user.email, subject: "Furnitrackr | Please confirm your e-mail")
+  end
 end
