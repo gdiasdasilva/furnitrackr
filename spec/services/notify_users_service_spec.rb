@@ -19,10 +19,8 @@ RSpec.describe NotifyUsersService do
       expect(UserMailer).to receive(:with).with(user: tracker_2.user, tracker: tracker_2).
         and_return(double_mailer)
 
-      double_mailer.should_receive(:price_drop_notification).exactly(2).times.
-        and_return(double_mailer)
-
-      double_mailer.should_receive(:deliver_now).exactly(2).times
+      expect(double_mailer).to receive(:price_drop_notification).exactly(2).times.and_return(double_mailer)
+      expect(double_mailer).to receive(:deliver_now).exactly(2).times
 
       subject
     end
