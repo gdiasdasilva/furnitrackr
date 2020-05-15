@@ -15,17 +15,17 @@
   <body>
     <%= render "layouts/navbar" %>
     <div class="container">
-      <% if flash.present? %>
-        <% flash.each do |key, value| %>
-          <div class="notification <%= key %>">
-            <button class="delete"></button>
-              <p><%= value %></p>
-          </div>
-        <% end %>
-      <% end %>
       <section class="section">
         <div class="columns">
           <div class="column">
+            <% if flash.present? %>
+              <% flash.each do |key, value| %>
+                <div class="notification <%= key %>">
+                  <button class="delete"></button>
+                    <p><%= value %></p>
+                </div>
+              <% end %>
+            <% end %>
             <%= yield %>
           </div>
         </div>

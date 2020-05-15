@@ -53,6 +53,8 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
 
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|

@@ -1,9 +1,7 @@
 require "rails_helper"
 
 feature "User logs in" do
-  before do
-    create(:user, email: "valid@example.com", password: "password")
-  end
+  let!(:user) { create(:user, email: "valid@example.com", password: "password") }
 
   scenario "with valid email and password" do
     sign_in_with "valid@example.com", "password"
@@ -18,5 +16,14 @@ feature "User logs in" do
   scenario "with blank password" do
     sign_in_with "valid@example.com", ""
     expect(page).to have_content("Log in")
+  end
+
+  context "unconfirmed user" do
+    let!(:user) { create(:user, :unconfirmed, email: "valid@example.com", password: "password") }
+
+    scenario "unconfirmed user" do
+      sign_in_with "valid@example.com", "password"
+      expect(page).to have_content "Please check your e-mail to confirm your account."
+    end
   end
 end

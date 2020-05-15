@@ -36,4 +36,20 @@ RSpec.describe UserMailer, type: :mailer do
       expect(email.body.include?("<strong>Sender:</strong> test@example.com")).to eq true
     end
   end
+
+  describe "#registration_confirmation" do
+    let(:user) { create(:user, email: "user@furnitrackr.com", email_confirmation_token: "abcdefghij") }
+    let(:email) do
+      described_class.registration_confirmation(user)
+    end
+
+    it "should send an e-mail" do
+      email.deliver_now
+
+      expect(email.from).to eq ["no-reply@furnitrackr.com"]
+      expect(email.to).to eq ["user@furnitrackr.com"]
+      expect(email.subject).to eq "Furnitrackr | Please confirm your e-mail"
+      expect(email.body.include?(confirm_email_url("abcdefghij"))).to eq true
+    end
+  end
 end
