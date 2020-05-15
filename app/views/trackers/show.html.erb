@@ -1,8 +1,8 @@
 <section>
   <div class="columns">
     <div class="column content">
-      <h2 class="title is-2"><%= @tracker.title %></h2>
-      <hr>
+      <%= render "partials/page_title", title: @tracker.title %>
+
       <p class="tag is-rounded"><%= @tracker.url.truncate(40) %> <a href="<%= @tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a></p>
       <p>You'll be notified via e-mail once the price for <strong><%= @tracker.title %></strong> falls below your predefined threshold of <strong><%= @tracker.display_price_euros %></strong>.</p>
     </div>

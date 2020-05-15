@@ -1,34 +1,26 @@
-<section class="contact-us">
-  <div class="columns">
-    <div class="column">
-      <h2 class="title is-2">Contact us</h2>
-      <hr>
-      <h3 class="subtitle">
-        Feel free to leave us a message to ask any questions or report a bug you've found.
-      </h3>
+<%= render "partials/page_title", title: "Contact us" %>
+<h3 class="subtitle">
+  Feel free to leave us a message to ask any questions or report a bug you've found.
+</h3>
 
-      <%= form_with url: contact_us_path, method: "post", local: true do %>
-        <div class="field">
-          <%= label_tag :email, "Your e-mail address", class: "label" %>
-          <div class="control">
-            <%= email_field_tag :email, nil, placeholder: "e.g. john@example.com", class: "input", required: true %>
-          </div>
-        </div>
-        <div class="field">
-          <%= label_tag :message, "Message", class: "label" %>
-          <div class="control">
-            <%= text_area_tag :message, nil, placeholder: "Leave us a message...", required: true, class: "textarea" %>
-          </div>
-        </div>
-        <div class="field">
-          <%= label_tag :math, "How much is 10 minus 5?", class: "label" %>
-          <div class="control">
-            <%= text_field_tag :math, nil, placeholder: "e.g. 7", class: "input", required: true %>
-          </div>
-        </div>
-        <%= submit_tag "Send message", class: "button is-primary" %>
-      <% end %>
+<%= form_with url: contact_us_path, method: "post", local: true do %>
+  <div class="field">
+    <%= label_tag :email, "Your e-mail address", class: "label" %>
+    <div class="control">
+      <%= email_field_tag :email, nil, placeholder: "e.g. john@example.com", class: "input", required: true %>
     </div>
   </div>
-</section>
-
+  <div class="field">
+    <%= label_tag :message, "Message", class: "label" %>
+    <div class="control">
+      <%= text_area_tag :message, nil, placeholder: "Leave us a message...", required: true, class: "textarea" %>
+    </div>
+  </div>
+  <div class="field">
+    <%= label_tag :math, "How much is 10 minus 5?", class: "label" %>
+    <div class="control">
+      <%= text_field_tag :math, nil, placeholder: "e.g. 7", class: "input", required: true %>
+    </div>
+  </div>
+  <%= submit_tag "Send message", class: "button is-primary" %>
+<% end %>
