@@ -18,10 +18,12 @@ feature "User logs in" do
     expect(page).to have_content("Log in")
   end
 
-  scenario "unconfirmed user" do
-    user.update(email_confirmed_at: nil)
+  context "unconfirmed user" do
+    let!(:user) { create(:user, :unconfirmed, email: "valid@example.com", password: "password") }
 
-    sign_in_with "valid@example.com", "password"
-    expect(page).to have_content "Please check your e-mail to confirm your account."
+    scenario "unconfirmed user" do
+      sign_in_with "valid@example.com", "password"
+      expect(page).to have_content "Please check your e-mail to confirm your account."
+    end
   end
 end

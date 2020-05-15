@@ -11,8 +11,9 @@ describe EmailConfirmationsController do
     end
 
     context "with valid confirmation token" do
+      let!(:user) { create(:user, :unconfirmed, email_confirmation_token: "valid_token") }
+
       it "confirms user and signs it in" do
-        user = create(:user, email_confirmation_token: "valid_token", email_confirmed_at: nil)
         get :update, params: { token: "valid_token" }
 
         user.reload

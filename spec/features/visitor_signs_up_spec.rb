@@ -17,6 +17,7 @@ feature "Visitor signs up" do
     open_email "valid@example.com"
     click_first_link_in_email
 
+    expect(current_path).to eq(trackers_path)
     expect(page).to have_content "Your e-mail was confirmed. You're all set!"
 
     click_button "Sign out"
