@@ -18,7 +18,7 @@ describe EmailConfirmationsController do
         user.reload
         expect(user.email_confirmed_at).to be_present
         expect(response).to redirect_to(trackers_path)
-        expect(flash[:notice]).to eq "Your e-mail was confirmed. You're all set!"
+        expect(flash[:success]).to eq "Your e-mail was confirmed. You're all set!"
       end
     end
   end

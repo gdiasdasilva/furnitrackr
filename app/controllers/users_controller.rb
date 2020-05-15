@@ -5,7 +5,7 @@ class UsersController < Clearance::UsersController
 
     if @user.save
       UserMailer.registration_confirmation(@user).deliver_now
-      redirect_back_or url_after_create
+      redirect_to sign_in_path, flash: { success: "Please check your e-mail to confirm your account." }
     else
       render template: "users/new"
     end

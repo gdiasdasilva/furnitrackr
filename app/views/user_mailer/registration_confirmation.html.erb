@@ -5,7 +5,7 @@
   </head>
   <body>
     <p>Hey there! You're almost ready to start using Furnitrackr to keep up with the best deals.</p>
-    <p>Click the following link to <a href="<%= url_for(action: "update", controller: "email_confirmations", token: @user.email_confirmation_token) %>">confirm your e-mail address</a>.</p>
+    <p>Click the following link to <a href="<%= confirm_email_url(token: @user.email_confirmation_token) %>">confirm your e-mail address</a>.</p>
     <p>Have a great day!</p>
     <p><strong>— <a href="<%= root_url %>">Furnitrackr.com</a></strong></p>
   </body>
