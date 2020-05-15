@@ -12,7 +12,7 @@ feature "User creates a tracker" do
 
     navigate_navbar_to "Track new product"
 
-    expect(page).to have_content("New Tracker")
+    expect(page).to have_content("Track a new product")
 
     fill_tracker_form
     click_button "Submit"

@@ -60,7 +60,7 @@ def navigate_to_trackers_page
   navigate_navbar_to "My products"
 
   expect(current_path).to eq trackers_path
-  expect(page).to have_content("Trackers")
+  expect(page).to have_content("My products")
 end
 
 def navigate_to_first_tracker_in_list
