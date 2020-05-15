@@ -1,3 +1,5 @@
+require "guards/confirmed_user_guard"
+
 Clearance.configure do |config|
   config.routes = false
   config.mailer_sender = "no-reply@furnitrackr.com"
