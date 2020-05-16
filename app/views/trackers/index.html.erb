@@ -27,6 +27,11 @@
                   <i class="fa fa-lg fa-search-plus"></i>
                 </span>
               <% end %>
+              <%= link_to edit_tracker_path(tracker), class: "button is-warning tracker-edit" do %>
+                <span class="icon">
+                  <i class="fas fa-pencil-alt"></i>
+                </span>
+              <% end %>
               <%= link_to tracker_path(tracker), method: :delete, data: { confirm: 'Are you sure?' }, class: 'button is-danger' do %>
                 <span class="icon ">
                   <i class="fas fa-lg fa-trash"></i>
