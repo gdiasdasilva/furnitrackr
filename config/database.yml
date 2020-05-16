@@ -2,8 +2,11 @@ development: &default
   adapter: postgresql
   database: furnitrackr_development
   encoding: utf8
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
   min_messages: warning
+  host: db
+  username: postgres
+  password: <%= ENV['PG_PASSWORD'] %>
 
 test:
   <<: *default
