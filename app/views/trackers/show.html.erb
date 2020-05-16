@@ -5,6 +5,14 @@
 
       <p class="tag is-rounded"><%= @tracker.url.truncate(40) %> <a href="<%= @tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a></p>
       <p>You'll be notified via e-mail once the price for <strong><%= @tracker.title %></strong> falls below your predefined threshold of <strong><%= @tracker.display_price_euros %></strong>.</p>
+      <p>Prices for products are updated daily.</p>
+
+      <% if @tracker.prices.present? %>
+        <ul>
+          <li><strong>Lowest price:</strong> <%= Money.new(@tracker.lowest_price.value) %>€ (at <%= @tracker.lowest_price.created_at.strftime("%B %-d, %Y") %>)</li>
+          <li><strong>Highest price:</strong> <%= Money.new(@tracker.highest_price.value) %>€ (at <%= @tracker.highest_price.created_at.strftime("%B %-d, %Y") %>)</li>
+        </ul>
+      <% end %>
     </div>
   </div>
   <div class="columns">
@@ -22,7 +30,7 @@
                   <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
                     <tr>
                       <td><%= price.created_at.strftime("%B %-d, %Y") %></td>
-                      <td><%= Money.new(price.value) %> €</td>
+                      <td><%= Money.new(price.value) %>€</td>
                     </tr>
                   <% end %>
                 </tbody>
