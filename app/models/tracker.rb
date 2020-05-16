@@ -18,6 +18,14 @@ class Tracker < ApplicationRecord
     "#{Money.new(threshold_price)}€"
   end
 
+  def lowest_price
+    prices.order(value: :asc).first
+  end
+
+  def highest_price
+    prices.order(value: :desc).first
+  end
+
   def fetch_current_price
     return prices.order(:created_at).last if prices.since(Date.today.beginning_of_day).any?
 

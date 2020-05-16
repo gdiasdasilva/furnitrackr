@@ -161,6 +161,26 @@ RSpec.describe Tracker, type: :model do
     end
   end
 
+  describe "#lowest_price" do
+    let!(:price_1) { create(:price, product: product, value: 2000) }
+    let!(:price_2) { create(:price, product: product, value: 1500) }
+    let!(:price_3) { create(:price, product: product, value: 3000) }
+
+    it "returns the lowest price registered for the tracker" do
+      expect(subject.lowest_price).to eq price_2
+    end
+  end
+
+  describe "#highest_price" do
+    let!(:price_1) { create(:price, product: product, value: 2000) }
+    let!(:price_2) { create(:price, product: product, value: 2500) }
+    let!(:price_3) { create(:price, product: product, value: 1900) }
+
+    it "returns the highest price registered for the tracker" do
+      expect(subject.highest_price).to eq price_2
+    end
+  end
+
   describe ".to_notify" do
     context "when multiple trackers exists" do
       let(:tracker_1) { create(:tracker, threshold_price: 500) }
