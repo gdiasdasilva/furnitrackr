@@ -2,7 +2,8 @@ require "rails_helper"
 
 feature "User edits a tracker" do
   let(:user) { create(:user) }
-  let!(:tracker_2) { create(:tracker, user: user, title: "Some name", threshold_price: 350) }
+
+  before { create(:tracker, user: user, title: "Some name", threshold_price: 350) }
 
   scenario "user edits a tracker" do
     sign_in_with user.email, user.password
