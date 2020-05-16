@@ -5,6 +5,6 @@ class Price < ApplicationRecord
   scope :since, ->(datetime) { where("prices.created_at >= ?", datetime) }
 
   def self.group_by_day
-    order("date_trunc('day', prices.created_at)").pluck("date_trunc('day', prices.created_at)", :value)
+    order(:created_at).pluck(:created_at, :value).map { |p| [p.first.to_date, p.last / 100.0] }
   end
 end
