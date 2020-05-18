@@ -1,2 +1,7 @@
-<h1 class="title is-2"><%= title %></h1>
-<hr>
+<div class="content">
+  <h1 class="title is-1"><%= title %></h1>
+
+  <% if defined? subtitle %>
+    <p class="subtitle"><%= subtitle %></p>
+  <% end %>
+</div>
