@@ -1,21 +1,70 @@
+<%= render "partials/page_title", title: "How does it work?", subtitle: "Learn about how Furnitrackr works and how to start using it." %>
+
 <section class="how-does-it-work">
   <div class="columns">
     <div class="column content">
-      <%= render "partials/page_title", title: "How does it work?" %>
-      <p>Furnishing a house is usually an expensive task and monitoring products daily to take advantage of discounts is very time-consuming.</p>
-      <p><strong>Furnitrackr</strong> helps you by simplifying that process.</p>
+      <p>Furnishing a house is usually an expensive task and monitoring products daily to take advantage of discounts is very time-consuming. <strong>Furnitrackr</strong> helps you by simplifying that process.</p>
       <p>Our platform tracks the prices of your favourite <strong>IKEA</strong> products for you and notifies you when then next great deal appears.</p>
-      <p>You can set up your account in a few minutes with 3 simple steps:</p>
+      <p>You can set up your account with 3 simple steps:</p>
     </div>
   </div>
-  <div class="steps content">
-      <h4 class="title is-4"><i class="fas fa-user-plus"></i> Join us</h4>
-      <p>You just need an e-mail address and a password to start using <%= link_to "Furnitrackr", sign_up_path %>.</p>
-
-      <h4 class="title is-4"><i class="fas fa-cogs"></i> Set up your trackers</h4>
-      <p>Start tracking multiple products and set the prices at which you would like to buy each one of them.</p>
-
-      <h4 class="title is-4"><i class="fas fa-envelope-open-text"></i> Sit back and relax!</h4>
-      <p>Our platform will notify you via e-mail once the price of any of the products you're tracking falls below your predefined goal price.</p>
+  <div class="columns">
+    <div class="column is-one-third">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-2by1">
+            <%= image_tag("undraw_authentication_fsn5.svg", :alt => "authentication") %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">Join us</p>
+            </div>
+          </div>
+          <div class="content">
+            <p>You just need an e-mail address and a password to start using <%= link_to "Furnitrackr", sign_up_path %>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-one-third">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-2by1">
+            <%= image_tag("undraw_setup_wizard_r6mr.svg", :alt => "wizard") %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">Set up your trackers</p>
+            </div>
+          </div>
+          <div class="content">
+            <p>Once you're logged in and with your account confirmed, you can <%= link_to "start tracking", new_tracker_path %> multiple products and set the prices at which you would like to buy each one of them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column is-one-third">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-2by1">
+            <%= image_tag("undraw_a_moment_to_relax_bbpa.svg", :alt => "relax") %>
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">Sit back and relax!</p>
+            </div>
+          </div>
+          <div class="content">
+            <p>Our platform will notify you via e-mail once the price of any of the products you're tracking falls below your predefined goal price.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

@@ -2,14 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.how-does-it-work {
-  .steps {
-    h4 {
-      margin-top: 45px;
+.contact-us-section {
+  margin-top: 50px;
+}
 
-      svg {
-        margin-right: 10px;
-      }
-    }
+.how-does-it-work {
+  .card {
+    margin-top: 30px;
+    box-shadow: none;
   }
 }

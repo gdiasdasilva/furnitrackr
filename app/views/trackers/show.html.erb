@@ -1,9 +1,8 @@
+<%= render "partials/page_title", title: @tracker.title, subtitle: "Tracking since #{distance_of_time_in_words(Time.current, @tracker.created_at)} ago" %>
+
 <section>
   <div class="columns">
     <div class="column content">
-      <%= render "partials/page_title", title: @tracker.title %>
-
-      <p class="tag is-rounded"><%= @tracker.url.truncate(40) %> <a href="<%= @tracker.url %>" target="_blank" class="is-link"><i class="fas fa-external-link-alt"></i></a></p>
       <p>You'll be notified via e-mail once the price for <strong><%= @tracker.title %></strong> falls below your predefined threshold of <strong><%= @tracker.display_price_euros %></strong>.</p>
       <p>Prices for products are updated daily.</p>
 
@@ -22,10 +21,6 @@
           <% if @tracker.prices.present? %>
             <div class="column is-one-third">
               <table class="table is-fullwidth is-striped is-hoverable">
-                <thead>
-                  <th>Date</th>
-                  <th>Price</th>
-                </thead>
                 <tbody>
                   <% @tracker.prices.order(created_at: :desc).limit(10).each do |price| %>
                     <tr>
@@ -38,7 +33,7 @@
             </div>
             <% if @tracker.prices.count > 0 %>
               <div class="column">
-                <%= line_chart @tracker.prices.group_by_day, id: "prices-chart", ytitle: "Price", curve: false, suffix: " €" %>
+                <%= line_chart @tracker.prices.group_by_day, id: "prices-chart", curve: false, suffix: " €" %>
               </div>
             <% end %>
           <% else %>

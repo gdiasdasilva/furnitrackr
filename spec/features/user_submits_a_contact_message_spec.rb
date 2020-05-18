@@ -12,7 +12,7 @@ feature "User submits a contact message" do
     fill_in "Your e-mail address", with: "example@furnitrackr.com"
     fill_in "Message", with: "This is my example message."
     fill_in "How much is 10 minus 5?", with: "5"
-    click_button "Send message"
+    click_button "Send"
 
     expect(page).to have_content "Your message was successfully submitted."
   end
@@ -21,7 +21,7 @@ feature "User submits a contact message" do
     fill_in "Your e-mail address", with: "example@furnitrackr.com"
     fill_in "Message", with: "This is my example message."
     fill_in "How much is 10 minus 5?", with: "6"
-    click_button "Send message"
+    click_button "Send"
 
     expect(page).to have_content "Gotcha."
   end

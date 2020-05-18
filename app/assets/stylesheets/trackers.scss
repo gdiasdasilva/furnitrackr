@@ -4,6 +4,11 @@
 
 table.table {
   text-align: center;
+
+  td, th {
+    border: none;
+  }
+
   tbody {
     tr {
       height: 50px;
