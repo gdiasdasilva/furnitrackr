@@ -29,3 +29,21 @@ At this point, you should be able to visit the application at `localhost:3000`.
 ## Deployment instructions
 
 In the future deploy to heroku.
+
+## Screenshots
+
+### Homepage
+
+![Screenshot 1](./app/assets/images/screenshots/screenshot_1.png)
+
+### How does it work?
+
+![Screenshot 2](./app/assets/images/screenshots/screenshot_2.png)
+
+### Trackers listing
+
+![Screenshot 3](./app/assets/images/screenshots/screenshot_3.png)
+
+### Product tracker detail
+
+![Screenshot 4](./app/assets/images/screenshots/screenshot_4.png)
